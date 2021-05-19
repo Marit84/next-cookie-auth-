@@ -4,7 +4,7 @@
   "description": "\"Cookie authentication with Next.js\"",
   "main": "server.js",
   "scripts": {
-    "dev": "node server.js"
+    "dev": "nodemon server.js"
   },
   "author": "\"Marit Pedersen\"",
   "license": "ISC",
