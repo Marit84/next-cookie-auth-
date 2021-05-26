@@ -1,9 +1,10 @@
 import React from 'react';
+import { loginUser } from '../lib/auth';
 
 class LoginForm extends React.Component {
     state = {
-        email: ' ',
-        password: ' '
+        email: '',
+        password: ''
     };
 
     handleChange = event => {
@@ -11,8 +12,9 @@ class LoginForm extends React.Component {
     };
 
     handleSubmit = event => {
+        const { email, password } = this.state;
         event.preventeDefault();
-        console.log(this.state);
+        loginUser(email, password);
     };
     
     render() {
