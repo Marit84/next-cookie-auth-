@@ -1,10 +1,13 @@
 import React from 'react';
 import { loginUser } from '../lib/auth';
+import Router from 'next/router';
 
 class LoginForm extends React.Component {
     state = {
-        email: '',
-        password: ''
+        email: 'Sincere@april.biz',
+        password: 'hildegard.org',
+        error: '',
+        isLoading: false
     };
 
     handleChange = event => {
@@ -13,26 +16,45 @@ class LoginForm extends React.Component {
 
     handleSubmit = event => {
         const { email, password } = this.state;
-        event.preventeDefault();
-        loginUser(email, password);
+
+        event.preventDefault();
+        this.setState({ error: '', isLoading: true })
+        loginUser(email, password).then(() => {
+            Router.push('/profile')
+        })
+        .catch(this.showError)
     };
+
+    showError = err => {
+        console.error(err);
+        const error = err.response && err.response.data || err.message;
+        this.setState({ error, isLoading: false });
+    }
     
     render() {
+        const { email, password, error, isLoading } = this.state;
         return (
             <form onSubmit={this.handleSubmit}>
                 <div>
-                    <input type="email"
+                    <input 
+                type="email"
                 name="email" 
                 placeholder="email"
+                value={email}
                 onChange={this.handleChange}
                  /></div>
-                <div><input type="password"
+                <div><input 
+                type="password"
                 name="password" 
                 placeholder="password"
+                value={password}
                 onChange={this.handleChange}
                  />
                  </div>
-                <button type="submit">Submit</button>
+                <button diasbled={isLoading} type="submit">
+                {isLoading ? "Sending" : "Submit"}
+                </button>
+               {error && <div>{error}</div>} 
             </form>
 
         );

@@ -39,8 +39,7 @@ const { email, password } = req.body;
 const user = await authenticate(email, password);
 if (!user) {
     return res.status(403).send("Invalid email or password");
-   
-};
+}
 const userData = {
     name: user.name,
     email: user.email,
@@ -49,6 +48,19 @@ const userData = {
 res.cookie('token', userData, COOKIE_OPTIONS);
 res.json(userData);
     });
+
+    server.get('/api/profile', async (req, res) => {
+        const { signedCookies = {} } = req;
+        const { token } = signedCookies;
+        if (token && token.email) {
+            const { data } = await axios.get(
+                'http://jsonplaceholder.typicode.com/users'
+                );
+                const userProfile = data.find(user => user.email === token.email);
+        return res.json({ user: userProfile });
+        }
+        res.sendStatus(404);
+    })
 
     server.get('*', (req, res) => {
         return handle(req, res);
