@@ -2,12 +2,13 @@ import React from 'react';
 import { loginUser } from '../lib/auth';
 import Router from 'next/router';
 
+
 class LoginForm extends React.Component {
     state = {
         email: 'Sincere@april.biz',
         password: 'hildegard.org',
         error: '',
-        isLoading: false
+        isLoading: 'false'
     };
 
     handleChange = event => {
