@@ -35,6 +35,7 @@ class LoginForm extends React.Component {
     render() {
         const { email, password, error, isLoading } = this.state;
         return (
+            <div>
             <form onSubmit={this.handleSubmit}>
                 <div>
                     <input 
@@ -53,10 +54,44 @@ class LoginForm extends React.Component {
                  />
                  </div>
                 <button diasbled={isLoading} type="submit">
-                {isLoading ? "Sending" : "Submit"}
+                {!isLoading ? "Sending" : "Submit"}
                 </button>
                {error && <div>{error}</div>} 
             </form>
+
+            <style jsx>
+                {`
+
+                form {
+                    text-align: center;
+                }
+
+                input {
+                    margin-bottom: 0.5em;
+                }
+
+                button {
+                    margin: auto;
+                    margin-top: 1em;
+                    background-color: black;
+                    color: white;
+                    padding-left: 1em;
+                    padding-right: 1em;
+                    padding-top: 0.5em;
+                    padding-bottom: 0.5em;
+                    border-style: none;
+                    border-radius: 5px;
+                    transition: transform .2s; 
+                }
+
+                button:hover {
+                    transform: scale(1.2); 
+                }
+                
+                `}
+            </style>
+
+            </div>
 
         );
     }

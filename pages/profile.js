@@ -1,7 +1,6 @@
 import { getUserProfile, authInitialProps } from '../lib/auth';
 import React from 'react';
 import Layout from '../components/Layout';
-import { loadGetInitialProps } from 'next/dist/next-server/lib/utils';
 
 export default class Profile extends React.Component {
 state = {

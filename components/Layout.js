@@ -41,29 +41,40 @@ return (
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: center;
+        flex-direction: column;
+        font-family: Arial;
 }
+
 .navbar {
         width: 100%;
         display: flex;
         justify-content: space-around;
 }
+
 a {
         margin-right: 0.5em;
+        text-decoration: none;
+        color: #808080; 
 }
+
 button {
-        text-decoration: underline;
+        background: none;
         padding: 0;
         font: inherit;
         cursor: pointer;
         border-style: none;
-        color: rgb(0, 0, 238);
-
+        color: #808080;
 }
 
-                      `}</style>
-               
-                
+a:hover, button:hover {
+        color: black;               
+}
+
+h1 {
+        color: #4A96A8;
+}
+
+                      `}</style>        
         </div>
 )};
 
